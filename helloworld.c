@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h> //necessario para usar boolean
 
 int main () {
     //single line comment
@@ -22,6 +23,9 @@ int main () {
     
     char name[] = "Bruno Vieira"; // uma string é um array de char
     printf("My name is %s", name );
+
+    bool isOnline = true;
+    printf("%d", isOnline);
 
     return 0;
 }
