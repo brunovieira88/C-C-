@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/brunovieira/Documents/candcplusplus/Praticas AED/P1/simples_1'
+relocations:     []
+...
