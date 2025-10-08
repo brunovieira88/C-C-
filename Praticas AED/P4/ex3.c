@@ -10,9 +10,10 @@ int checKProperty(int *a, int size, long long *comparisonCount){
 
     for (int i = 0; i < size - 2; i++){
         for (int j = i + 1; j < size - 1; j++){
+            int jk = a[i] + a[j];
             for (int k = j + 1; k < size; k++){
                 comparisons++;
-                if (a[k] == a[i] + a[j]){
+                if (a[k] == jk){
                     counter++;
                 }
             }
