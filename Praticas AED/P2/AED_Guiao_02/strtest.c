@@ -3,50 +3,70 @@
 #include <ctype.h>
 
 
+char *cutFreeSpace(char *str){
+    str[strlen(str)-1] = '\0';
+    return str;
+}
+int countAlphaChar(char *str){
+    int alphaCount=0;
+    for (int i = 0; str[i] != '\0'; i++){ //nao fazer strlen aqui porque pode dar asneira
+        if (isalpha(str[i])){ 
+            alphaCount++;
+        }
+    }
+    return alphaCount;
+}
+int countUpperChar(char *str){
+    int upperCount=0;
+    for (int i =0; str[i] != '\0'; i++){
+        if (isupper(str[i])){
+            upperCount++;
+        }
+    }
+    return upperCount;
+}
+char *convertUpperToLowerChar(char *str){
+    for (int i = 0; str[i]!='\0'; i++){
+        if (isupper(str[i])){
+            str[i]=tolower(str[i]);
+        }
+    }
+    return str;
+}
 int main(void){
     //em casa fazer com funcoes
     char word1[100], word2[100];
     printf("enter one word(up to 100char): ");
     fgets(word1, sizeof(word1)/sizeof(char), stdin);
-    word1[strlen(word1)-1] = '\0'; //remover os espacos
+    cutFreeSpace(word1); //remover os espacos
+
     printf("enter another word(up to 100char): ");
     fgets(word2, sizeof(word2)/sizeof(char), stdin);
-    word2[strlen(word2)-1] = '\0';
+    cutFreeSpace(word2);
     printf("%s, %s\n", word1, word2);
-    int alphaCount = 0;
+    int alphaCount = countAlphaChar(word1);
     /*
     outra maneira de iterar strings
     n=0
     char *p = str;
-    while (*p != '\0){
+    while (*p != '\0' ){
         if (){
             ...        
         }
         p++;
     }
     */
-    for (int i = 0; word1[i] != '\0'; i++){ //nao fazer strlen aqui porque pode dar asneira
-        if (isalpha(word1[i])){ 
-            alphaCount++;
-            if(isupper(word1[i])){
-                word1[i] = tolower(word1[i]);
-            }
-        }
-    }
-    int upperCount=0;
-    for (int i = 0; word2[i] != '\0'; i++){
-        if(isupper(word2[i])){
-            upperCount++;
-            word2[i] = tolower(word2[i]);
-        }
-    }
+    int upperCount = countUpperChar(word2);
+    convertUpperToLowerChar(word1);
+    convertUpperToLowerChar(word2);
+    //see if the two string are the same using the strcmp function 
     if(strcmp(word1, word2) == 0){
         printf("the two strings are the same\n");
     }else{
         printf("the two strings are not the same\n");
     }
 
-    char str[sizeof(word2)]; 
+    char str[sizeof(word2) + 100]; 
     strcpy(str, word2);
 
     printf("alphabetic: %d\n", alphaCount);
